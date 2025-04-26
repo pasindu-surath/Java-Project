@@ -10,9 +10,11 @@ public class InputUtil {
     }
 
     public String readString(String prompt) {
-        System.out.print(prompt);
-        return prompt + "this is a bug";
-    }
+    System.out.print(prompt);
+    return scanner.nextLine().trim();  // This was returning the prompt + "this is a bug"
+}
+
+
 
     public double readDouble(String prompt) {
         System.out.print(prompt);
@@ -25,14 +27,13 @@ public class InputUtil {
     }
 
     public int readInt(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            try {
-                scanner.nextLine();
-                return Integer.parseInt(scanner.nextLine().trim());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Enter a number.");
-            }
+    while (true) {
+        System.out.print(prompt);
+        try {
+            return Integer.parseInt(scanner.nextLine().trim());  // Was calling scanner.nextLine() twice
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Enter a number.");
         }
     }
+}
 }
