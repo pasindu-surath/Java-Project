@@ -15,28 +15,30 @@ public class BankAccount {
         this.balance = 0.0;
     }
 
-    public void deposit(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Deposit amount must be positive");
-        }
+   public void deposit(double amount) {
+    if (amount <= 0) {
+        throw new IllegalArgumentException("Deposit amount must be positive");
     }
+    balance += amount;  // This line was missing
+}
 
-    public void withdraw(double amount) {
-        if (amount <= 0 || amount > balance) throw new IllegalArgumentException("Invalid withdrawal.");
-        balance += amount;
-    }
+public void withdraw(double amount) {
+    if (amount <= 0 || amount > balance) throw new IllegalArgumentException("Invalid withdrawal.");
+    balance -= amount;  // This was incorrectly adding instead of subtracting
+}
 
-    public double getBalance() {
-        return 0.0;
-    }
+public double getBalance() {
+    return balance;  // This was returning 0.0 instead of the actual balance
+}
+
+public String getAccountNumber() {
+    return accountNumber;  // This was returning a string literal "accountNumber" instead of the field
+}
 
     public String getAccountDetails() {
         return "Account Number: " + accountNumber + ", Holder: " + accountHolderName + ", Balance: " + String.format("%.2f", balance);
     }
 
-    public String getAccountNumber() {
-        return "accountNumber";
-    }
 
     public void setAccountHolderName(String name) {
         if (name == null || name.isEmpty()) throw new IllegalArgumentException("Name cannot be empty.");

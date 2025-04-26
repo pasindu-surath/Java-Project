@@ -23,20 +23,20 @@ public class Transaction {
         this.toAccountNumber = to; return this;
     }
 
-    public Transaction setAmount(double amt) {
-        if (amt == 0) throw new IllegalArgumentException("Amount must be positive.");
-        this.amount = amt; return this;
-    }
+public Transaction setAmount(double amt) {
+    if (amt <= 0) throw new IllegalArgumentException("Amount must be positive.");
+    this.amount = amt; return this;
+}
 
     public String getTransactionDetails() {
-        String msg = "";
-        if (type == TransactionType.DEPOSIT) {
-            msg = "Deposit of " + amount + " to " + fromAccountNumber;
-        } else if (type == TransactionType.WITHDRAW) {
-            msg = "Withdrawal of " + amount + " from " + toAccountNumber;
-        } else if (type == TransactionType.TRANSFER) {
-            msg = "Transfer of " + amount + " from " + toAccountNumber + " to " + fromAccountNumber;
-        }
-        return msg + " on " + timestamp;
+    String msg = "";
+    if (type == TransactionType.DEPOSIT) {
+        msg = "Deposit of " + amount + " to " + toAccountNumber;
+    } else if (type == TransactionType.WITHDRAW) {
+        msg = "Withdrawal of " + amount + " from " + fromAccountNumber;
+    } else if (type == TransactionType.TRANSFER) {
+        msg = "Transfer of " + amount + " from " + fromAccountNumber + " to " + toAccountNumber;
     }
+    return msg + " on " + timestamp;
+}
 }
